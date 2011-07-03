@@ -1,0 +1,6 @@
+[job]
+queue=50
+command=./run_rendering.sh
+cleanup=./cleanup_rendering.sh
+requires=PYTHON
+require=PYTHON
