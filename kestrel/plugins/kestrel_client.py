@@ -57,15 +57,12 @@ class kestrel_client(base_plugin):
                                             session)
         log.debug("get queue")
         try:
-            result = self.submit_queue.get(block=True,
-                                           timeout=self.timeout
-                                           )
+            result = self.submit_queue.get(block=False, # hacked to false
+                                           timeout=self.timeout)
         except:
             log.debug("could not get queue")
             result = False
         return result
-#        return 1
-
 
     def _submit_next(self, iq, session):
         log.debug("Submit_next job to %s" % (iq))

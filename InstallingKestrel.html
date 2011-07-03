@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+<head>
+<link rel="stylesheet" href="https://twiki.grid.iu.edu/twiki/pub/TWiki/HeadlinesPlugin/style.css" type="text/css" media="all" />
+<title> InstallingKestrel &lt; CampusGrids &lt; TWiki    </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="icon" href="/twiki/pub/CampusGrids/WebPreferences/favicon.ico    " type="image/x-icon" />
+<link rel="shortcut icon" href="/twiki/pub/CampusGrids/WebPreferences/favicon.ico    " type="image/x-icon" />
+<link rel="alternate" href="https://twiki.grid.iu.edu/bin/edit/CampusGrids/InstallingKestrel?_T=02 Jun 2011" type="application/x-wiki" title="edit InstallingKestrel" />
+<meta name="SCRIPTURLPATH" content="/bin" />
+<meta name="SCRIPTSUFFIX" content="" />
+<meta name="TEXT_JUMP" content="Jump" />
+<meta name="TEXT_SEARCH" content="Search" />
+<meta name="TEXT_NUM_TOPICS" content="Number of topics:" />
+<meta name="TEXT_MODIFY_SEARCH" content="Modify search" />
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/bin/view/CampusGrids/WebRss" />    
+<base href="https://twiki.grid.iu.edu/bin/view/CampusGrids/InstallingKestrel"></base>
+<!--BEHAVIOURCONTRIB--><script type="text/javascript" src="/twiki/pub/TWiki/BehaviourContrib/behaviour.compressed.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikilib.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiWindow.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiEvent.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiHTML.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiCSS.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiForm.js"></script>
+<script type="text/javascript" src="/twiki/pub/TWiki/PatternSkin/pattern.js"></script><style type="text/css" media="all">
+@import url('/twiki/pub/TWiki/TWikiTemplates/base.css');
+</style><script type="text/javascript" src="/twiki/pub/TWiki/TWikiJavascripts/twikiStyles.js"></script><style type="text/css" media="all">
+#patternTopBar,
+#patternTopBarContentsOuter {
+	height:95px; /* top bar height; make room for header columns */
+}
+#twikinetTopToolBar,
+#twikinetTopToolBar table {
+	top:95px; /* top bar height */
+	height:48px;
+}
+#patternClearHeaderCenter,
+#patternClearHeaderLeft,
+#patternClearHeaderRight {
+	height:144px; /* 95 + border + 48 */
+}
+#twikinetLogo {
+	position:absolute;
+	width:100%;
+	height:95px;
+}
+#twikinetLogo a {
+	position:absolute;
+	display:block;
+	width:179px;
+	height:65px;
+	background:none;
+	top:10px;
+	left:340px;
+}
+#twikinetLogo a:link, 
+#twikinetLogo a:visited {
+	border:none;
+}
+#twikinetLogo a:hover {
+	border-style:none none solid none;
+	border-width:1px;
+	border-color:#c4cbd6;
+}
+#twikinetLogo a span {
+	display:none;
+}
+#patternOuter {
+	margin-left:220px;
+}
+#patternLeftBar {
+	width:220px;
+	margin-left:-220px;
+}
+</style>
+<style type="text/css" media="all">
+@import url("/twiki/pub/TWiki/TWikiNetSkin/layout.css");
+@import url("/twiki/pub/TWiki/TWikiNetSkin/style.css");
+@import url("/twiki/pub/TWiki/TWikiNetSkin/colors.css");
+@import url("/twiki/pub/TWiki/TWikiNetSkin/rounded_corners.css");
+</style>
+<style type="text/css" media="all">
+	/* Styles that are set using variables */
+	#patternLeftBar .patternWebIndicator,
+	.patternBookView .twikiTopRow {
+		background-color:#D0D0D0;
+	}
+	.patternBookView {
+		border-color:#D0D0D0;
+	}
+	.patternPreviewPage #patternMain {
+		/* uncomment to set the preview image */
+		/*background-image:url("/twiki/pub/TWiki/PreviewBackground/preview2bg.gif    ");*/
+	}
+	
+</style><style type="text/css" media="all">
+
+
+
+</style>
+<style type="text/css" media="all">
+	@import url("/twiki/pub/TWiki/TWikiNetSkin/print.css");
+</style><!--GOOGLEANALYTICSPLUGIN--><!-- Google Analytics script -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-69012-21']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body class="patternViewPage">
+<a name="PageTop"></a>
+<div id="patternScreen">
+<div id="patternPageShadow">
+<div id="patternPage">
+<div id="patternWrapper"><div id="patternOuter">
+<div id="patternFloatWrap">
+<div id="patternMain"><div id="patternClearHeaderCenter"></div>
+<div id="patternMainContents"><div class="patternTop"><span class="patternHomePath"><span class="patternHomePathTitle">You are here: </span> <a href="/bin/view/Main/WebHome" class="twikiLink">TWiki    </a><span class='twikiSeparator'>&gt;</span><img src="/twiki/pub/TWiki/TWikiDocGraphics/web-bg-small.gif" border="0" alt="" width="13" height="13" style="background-color:#D0D0D0" />&nbsp;<a href="/bin/view/CampusGrids/WebHome">CampusGrids Web</a><span class='twikiSeparator'>&gt;</span><a href="https://twiki.grid.iu.edu/bin/view/CampusGrids/InstallingKestrel" title='Topic revision: 8 (05 May 2010 - 18:41:29)'>InstallingKestrel</a> <span class='patternRevInfo'>(05 May 2010, <a href="/bin/view/Main/MichaelFenn" class="twikiLink">MichaelFenn</a>)</span></span><!-- /patternHomePath--></div><!--/patternTop--><div class="twikiContentHeader"></div><div class="patternContent"><div class="patternTopic"> <h1><a name="Installing_and_Using_the_Kestrel"></a>  Installing and Using the Kestrel Scheduler </h1>
+<p />
+<strong>Revised 05 May 2010.</strong>
+<p />
+<div class="twikiToc"> <ul>
+<li> <a href="#Installing_a_Kestrel_Worker_Node"> Installing a Kestrel Worker Node</a>
+</li> <li> <a href="#Using_Kestrel"> Using Kestrel</a> <ul>
+<li> <a href="#Preparing_a_Job"> Preparing a Job</a>
+</li> <li> <a href="#Submitting_a_Job"> Submitting a Job</a>
+</li> <li> <a href="#Checking_Job_Status"> Checking Job Status</a>
+</li> <li> <a href="#Canceling_a_Job"> Canceling a Job</a>
+</li> <li> <a href="#Job_Completion"> Job Completion</a>
+</li></ul> 
+</li></ul> 
+</div>
+<p />
+Note: Kestrel is a prototype middleware being tested by STAR to access the Clemson campus grid, it is not a production middleware approved by OSG.
+<p />
+<h1><a name="Installing_a_Kestrel_Worker_Node"></a> Installing a Kestrel Worker Node </h1>
+<p />
+Kestrel is a new scheduler under development at Clemson University that uses XMPP as a message passing interface. A paper describing its architecture can be found <a href="http://sites.google.com/site/ciresearchgroup/publications/mtags2009.pdf?attredirects=0" target="_top">here</a>.  Note that Kestrel is a prototype for the next generation of cloud computing batch schedulers and is not a production system.
+<p />
+To install Kestrel and connect to the Clemson University pool, you will need Python &gt;= 2.6 but &lt; 3.0.  If Python 2.6 isn't the default version of python for your system, you can download and install it.  After you run <code>make</code> pay attention to the list of modules that failed to build, as this depends on which libraries are available on the system.  Of particular interest is the ssl module, as this is necessary for Kestrel.  If any needed module fails to build, install the relevant OS package (generally suffixed with <code>-dev</code> or <code>-devel</code>) and run <code>make</code> again.
+<pre class=screen>
+wget http://www.python.org/ftp/python/2.6.5/Python-2.6.5.tar.bz2
+tar xjf Python-2.6.5.tar.bz2
+cd Python-2.6.5
+./configure
+make
+make altinstall
+</pre>
+<p />
+Next we will need to install the Python setuptools package.  This provides a Python package manager that is needed to install several of Kestrel's dependencies.  If Python &gt;= 2.6 is the default Python on your system, you may be able to use a package provided by your distribution for this step.
+<pre class=screen>
+cd .. # if you were still in the Python-2.6.5 directory
+wget http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c11.tar.gz
+tar xzf setuptools-0.6c11.tar.gz
+cd setuptools-0.6c11
+python2.6 setup.py build
+python2.6 setup.py install
+</pre>
+<p />
+Now we'll install those additional packages.  <strong>OPTIONAL:</strong> This step is only necessary if you want to install Kestrel in a self-contained environment. 
+<pre class=screen>
+cd .. # if you were still in the setuptools-0.6c11 directory
+easy-install-2.6 virtualenv
+mkdir kestrel
+cd kestrel
+virtualenv .
+source bin/activate
+</pre>
+<p />
+Now we'll actually get the Kestrel source and perform the setup.  <a href="http://github.com/fritzy/SleekXMPP" target="_top">SleekXMPP</a> is required for Kestrel to operate.
+<pre class=screen>
+wget http://github.com/fritzy/SleekXMPP/tarball/0.9RC1
+tar xzf fritzy-SleekXMPP-0.9RC1-0-g935ee4d.tar.gz
+cd fritzy-SleekXMPP-67c6f50
+python2.6 setup.py install
+</pre>
+<p />
+ Matplotlib is required to use the log analyzer.  It is otherwise optional
+<pre class=screen>
+easy_install-2.6 numpy
+easy_install-2.6 matplotlib
+</pre>
+<p />
+Now, to install Kestrel itself.
+<pre class=screen>
+easy_install-2.6 kestrel
+</pre>
+<p />
+You'll need to create a config file at <code>~/.kestrelrc</code>
+<p />
+<pre class=screen>
+# XMPP
+# ---------------------------------------------------------------------
+# Credentials for connecting to an XMPP server.
+# Options:
+#   method: client|component - The type of XMPP connection to use.
+#                              Accepted values are client to use a
+#                              typical XMPP client session, or
+#                              component to use a more scalable
+#                              server component session.
+#   jid: string              - The username or component name
+#   password: string         - This is plaintext storage, modify read
+#                              permissions of this file accordingly.
+#   server: string           - Optional, specify the name of the XMPP
+#                              server. Normally, the JID will provide
+#                              the server name.
+#   port: int                - Optional, specify the connection port.
+#                              The default is 5222.
+
+# NOTE: For the Clemson pool, workers should have JIDs of the form:
+#       worker_X@kestrel.cs.clemson.edu where X is an integer from
+#       1 to 10,000. For use with many concurrent VMs, you will need
+#       to make a script to generate an appropriate config file with
+#       a random worker JID.
+[XMPP]
+method=client
+jid=worker_1@kestrel.cs.clemson.edu
+server=kestrel.cs.clemson.edu
+password=kestrel
+
+# Worker
+# ---------------------------------------------------------------------
+# Configuration for running a Kestrel worker agent.
+# Options:
+#  manager: string - The JID for the manager agent that the worker
+#                    will accept tasks from.
+#  profile: string - A space separated list of tags that identify
+#                    the capabilities of the worker. The list
+#                    can span multiple lines so long as the first
+#                    character of the line is a space.
+[worker]
+manager=manager.kestrel.cs.clemson.edu
+profile=STAR
+</pre>
+<p />
+To run the worker client
+<pre class=screen>
+source $VIRTUALENV_DIR/bin/activate # only if you installed with virtualenv
+easy_install-2.6 -U kestrel # Optional: to update kestrel
+kestrel worker &
+</pre>
+<p />
+Likewise, use <code>manager</code> or <code>analyzer</code> as arguments to the <code>kestrel</code> executable in order to run those components. Kestrel logs to stdout by default, so output redirection is necessary to save the log file.  The <code>analyzer</code> argument requires an additional argument which is the path to the log file to be analyzed.
+<p />
+Congratulations! The machine is now a worker node connected to the Clemson Kestrel cloud. 
+<p />
+<h1><a name="Using_Kestrel"></a> Using Kestrel </h1>
+<p />
+Before using Kestrel, it is advisable to install the Kestrel worker client and run it on a few machines.  Otherwise, you may not be able to guarantee the availability of resources. <strong>Note:</strong> The Kestrel worker node client is not required to be installed on the submission machine.  Only a compatible chat client such as Pidgin, Adium, GTalk, etc. is required.
+<p />
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Preparing_a_Job"></a> Preparing a Job </span></h2>
+Write a shell script that will manage tasks. <ol>
+<li> The script will be called with an integer index value from 0 to N-1 where N is the number of tasks for a job.  Mapping this index to the actual desired outputs is done by this script.
+</li> <li> It is the script's responsibility to download and upload any input and output files.
+</li></ol> 
+<p />
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Submitting_a_Job"></a> Submitting a Job </span></h2>
+Given a job shell script located at <code>"~/runtask.sh"</code> and a pool of running VMs to execute a job with 10,000 tasks, send the following message to manager.kestrel.cs.clemson.edu using Pidgin, Adium, GTalk, etc:
+<p />
+<code>{'type':'job', 'command':"~/runtask.sh", 'cleanup':"~/cleanup.sh", 'requires':["foo", "bar", "baz"], 'queue':10000}</code>
+<p />
+The cleanup script will be run after the task has been completed and before the next is accepted.  This may be used to perform tasks that would potentially disrupt the machine's state (e.g. shutdown the machine). The requires attribute is a list of tags that determine whether or not a particular worker will accept the job.  The requires list must be a subset of the provides list in the worker profile (defined in <code>install_root/Kestrel/start.py</code>) in order for the job to be accepted.
+<p />
+The manager will respond with either <code>{'type':'job/approved', 'job_id': 483}</code> or <code>{'type':'job/rejected'}</code> depending on whether or not the manager accepted the job.
+<p />
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Checking_Job_Status"></a> Checking Job Status </span></h2> <ol>
+<li> Send the following message to manager.kestrel.cs.clemson.edu using Pidgin, Adium, GTalk, etc: <code>{'type':'status'}</code> The manager will respond with a list of your submitted jobs and their progress.
+</li> <li> To get the status of a particular job, say 317, use this format: <code>{'type':'status', 'job_id': 317}</code>
+</li></ol> 
+<p />
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Canceling_a_Job"></a> Canceling a Job </span></h2> <ol>
+<li> To cancel all submitted jobs, send the following message to manager.kestrel.cs.clemson.edu: <code>{'type':'cancel'}</code>
+</li> <li> To cancel a particular job, say 428, use this format: <code>{'type':'cancel', 'job_id': 428}</code>  Use the status command to find the job's id number.
+</li></ol> 
+<p />
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="Job_Completion"></a> Job Completion </span></h2>
+Once all tasks have been completed (either successfully or with errors or from cancellation) for your job, say 78, the manager will send the following message to your XMPP client (Pidgin, Adium, GTalk, etc): <code>{'type':'job/finished', 'job_id': 78}</code> </div><!-- /patternTopic-->
+<div class="twikiContentFooter"></div></div><!-- /patternContent-->
+<a name="topic-actions"></a><div class="twikinetRounded twikinetRoundedTopicActions"><div class="rCRounded"><div class="rCTR"><div class="rCTL"></div><!--/rCTL--><div class="patternTopicActions"><div class="patternTopicAction"><span class="patternActionButtons"><span class="patternButton"><a href='https://twiki.grid.iu.edu/bin/edit/CampusGrids/InstallingKestrel?t=1307024867;nowysiwyg=1' rel='nofollow' title='Edit this topic text' accesskey='e'><span class='twikiAccessKey'>E</span>dit</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span class='patternButton'><a href='/bin/attach/CampusGrids/InstallingKestrel' rel='nofollow' title='Attach an image or document to this topic' accesskey='a'><span class='twikiAccessKey'>A</span>ttach</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span class='patternButton'><a href='/bin/view/CampusGrids/InstallingKestrel?cover=print' rel='nofollow' title='Printable version of this topic' accesskey='p'><span class='twikiAccessKey'>P</span>rint version</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span><span><a href='/bin/rdiff/CampusGrids/InstallingKestrel?type=history' rel='nofollow' title='View total topic history' accesskey='h'><span class='twikiAccessKey'>H</span>istory</a></span>: r8&nbsp;<a rel="nofollow" href="/bin/rdiff/CampusGrids/InstallingKestrel?rev1=8;rev2=7">&lt;</a>&nbsp;<a rel="nofollow" href="/bin/view/CampusGrids/InstallingKestrel?rev=7">r7</a>&nbsp;<a rel="nofollow" href="/bin/rdiff/CampusGrids/InstallingKestrel?rev1=7;rev2=6">&lt;</a>&nbsp;<a rel="nofollow" href="/bin/view/CampusGrids/InstallingKestrel?rev=6">r6</a>&nbsp;<a rel="nofollow" href="/bin/rdiff/CampusGrids/InstallingKestrel?rev1=6;rev2=5">&lt;</a>&nbsp;<a rel="nofollow" href="/bin/view/CampusGrids/InstallingKestrel?rev=5">r5</a>&nbsp;<a rel="nofollow" href="/bin/rdiff/CampusGrids/InstallingKestrel?rev1=5;rev2=4">&lt;</a>&nbsp;<a rel="nofollow" href="/bin/view/CampusGrids/InstallingKestrel?rev=4">r4</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span><a href='/bin/oops/CampusGrids/InstallingKestrel?template=backlinksweb' rel='nofollow' title='Search the CampusGrids Web for topics that link to here' accesskey='b'><span class='twikiAccessKey'>B</span>acklinks</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span><a href='/bin/view/CampusGrids/InstallingKestrel?raw=on' rel='nofollow' title='View raw text without formatting' accesskey='r'><span class='twikiAccessKey'>R</span>aw View</a></span><span class='twikiSeparator'>&nbsp;|&nbsp;</span><span><a href='/bin/oops/CampusGrids/InstallingKestrel?template=oopsmore&amp;param1=8&amp;param2=8' rel='nofollow' title='Delete or rename this topic; set parent topic; view and compare revisions' accesskey='m'><span class='twikiAccessKey'>M</span>ore topic actions</a></span></span></div><!--/patternTopicAction--></div><!--/patternTopicActions--></div><!--/rCTR--><div class="rCBR"><div class="rCBL"></div><!--/rCBL--></div><!--/rCBR--></div><!--/rCRounded--></div><!--/twikinetRounded--><div class="patternInfo twikiGrayText"><div class="patternRevInfo">Topic revision: r8 - 05 May 2010 - 18:41:29 - <a href="/bin/view/Main/MichaelFenn" class="twikiLink">MichaelFenn</a></div><!-- /patternRevInfo--></div><!-- /patternInfo-->
+</div><!-- /patternMainContents-->
+</div><!-- /patternMain--><div id="patternLeftBar"><div id="patternClearHeaderLeft"></div>
+<div id="patternLeftBarContents">
+Hello, <a href="/bin/view/Main/TWikiGuest" class="twikiLink">TWikiGuest</a>!
+<p />
+<a href="https://twiki.grid.iu.edu/bin/view/TWiki/TWikiRegistration" target="_top">Register</a>
+<p />
+<p />
+<!-- Google CSE Search Box Ends -->
+<h5><a name="Common_links"></a> Common links </h5> <ul>
+<li> <a href="/bin/view/Main/WebHome" class="twikiLink">OSG TWiki home</a>
+</li> <li> <a href="/bin/view/ReleaseDocumentation/WebHome" class="twikiLink">Install guides</a>
+</li> <li> <a href="/bin/view/Documentation/WebHome" class="twikiLink">Technical Documentation</a>
+</li> <li> <a href="/bin/view/ReleaseDocumentation/SiteAdminResources" class="twikiLink">Contact Info</a> 
+</li> <li> <strong><a href="/bin/view/Main/ICantFindItForm" class="twikiLink">I can't find it!</a></strong> 
+</li></ul> 
+<p />
+<h5><a name="Campus_Grids"></a> Campus Grids </h5> <ul>
+<li> add links
+</li></ul> 
+<p />
+<h5><a name="Meta_TWiki_links"></a> Meta-TWiki links </h5> <ul>
+<li> <a href="/bin/view/TWiki/WebLeftBarWebsList" class="twikiLink"> <img width="16" alt="indexlist" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/indexlist.gif" height="16" border="0" /> List all webs</a>
+</li> <li> <a href="/bin/view/CampusGrids/WebTopicCreator?parent=InstallingKestrel" target="_top"> <img width="16" alt="newtopic" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/newtopic.gif" height="16" border="0" /> Create New Topic</a>
+</li> <li> <span class="twikiNewLink"> <img width="16" alt="index" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/index.gif" height="16" border="0" /> Index of CampusGrids<a href="/bin/edit/Main/CampusGrids/WebTopicList?topicparent=CampusGrids.InstallingKestrel" rel="nofollow" title=" <img width="16">?</a></span>
+</li> <li> <span class="twikiNewLink"> <img width="16" alt="changes" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/changes.gif" height="16" border="0" /> Changes<a href="/bin/edit/Main/CampusGrids/WebChanges?topicparent=CampusGrids.InstallingKestrel" rel="nofollow" title=" <img width="16">?</a></span>
+</li> <li> <a href="/bin/view/Main/WebNotify" class="twikiLink"> <img width="16" alt="notify" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/notify.gif" height="16" border="0" /> Notifications</a>
+</li> <li> <span class="twikiNewLink"> <img width="16" alt="wrench" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/wrench.gif" height="16" border="0" /> Preferences<a href="/bin/edit/Main/CampusGrids/WebPreferences?topicparent=CampusGrids.InstallingKestrel" rel="nofollow" title=" <img width="16">?</a></span>
+</li> <li> <a href="/bin/view/Main/TWikiUsers" class="twikiLink"><img width="16" alt="person" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/person.gif" height="16" border="0" /> TWiki users</a>
+</li> <li> <a href="/bin/view/Main/TWikiGroups" class="twikiLink"><img width="16" alt="group" align="top" src="/twiki/pub/TWiki/TWikiDocGraphics/group.gif" height="16" border="0" /> Twiki groups</a>
+</li></ul> 
+<div class="twikiLeftBarPersonal">
+<p />
+</div>
+</div><!-- /patternLeftBarContents--></div><!-- /patternLeftBar-->
+</div><!-- /patternFloatWrap-->
+<div class="clear">&nbsp;</div>
+</div><!-- /patternOuter--></div><!-- /patternWrapper--><div id="patternTopBar"><div id="twikinetLogo"><a href="http://www.twiki.net/"><span>TWIKI.NET</span></a></div><div id="patternTopBarContents"><div class="twikiLeft"><span id="twikiLogo" class="twikiImage"><a href="http://www.opensciencegrid.org    "><img src="/pub/osg-logo.png    " border="0" alt="OpenScience Grid Website    " style="border:none;" /></a></span></div>
+<div class="twikiRight">
+<table cellpadding="0" cellspacing="0" border="0"><tr><td class="twikinetSearchJump twikinetSearchJumpLeft">
+ <ul>
+<li> <form name="jumpForm" action="/bin/view/CampusGrids/InstallingKestrel"><input id="jumpFormField" type="text" class="twikiInputField" name="topic" value="" size="16" /><input type="submit" class="twikinetJumpButton" name="submit" value="" /></form>
+</li> <li> <form name="quickSearchForm" action="/bin/view/CampusGrids/WebSearch"><input type="text" class="twikiInputField" id="quickSearchBox" name="search" value="" size="18" /><input type="hidden" name="scope" value="all" /><input type="hidden" name="web" value="CampusGrids" /><input type="submit" size="5" class="twikinetSearchButton" name="submit" value="" /></form>
+</li> <li> </li></ul> 
+</td>
+<td class="twikinetSearchJumpRight"></td>
+</tr></table><br class="twikiClear" /></div></div></div><!-- /patternTopBar--><div id="twikinetTopToolBar"><div id="twikinetTopToolBarContents"><div class="twikinetWebName twikiLeft">
+<table cellpadding="0" cellspacing="0" border="0"><tr><td style="vertical-align:middle;">
+<h2 class="twikinetRoundedAttachments"><span class="twikinetHeader"><a name="CampusGrids"></a>  <a href="/bin/view/CampusGrids/WebHome" class="twikiCurrentWebHomeLink twikiLink">CampusGrids</a> </span></h2>
+</td></tr></table>
+</div><!--/twikinetWebName-->
+<div class="twikinetToolBar twikiRight">
+<table cellpadding="0" cellspacing="0" border="0"><tr><td><a href="https://twiki.grid.iu.edu/bin/edit/CampusGrids/InstallingKestrel?t=1307024867;nowysiwyg=1" rel="nofollow">
+<span class="rCRounded"><span class="rCTR"><span class="rCTL"></span><!--/rCTL-->
+<span class="twikiLinkLabel twikinetEditIcon"><span class='twikiAccessKey'>E</span>dit</span>
+</span><!--/rCTR--><span class="rCBR"><span class="rCBL"></span></span><!--/rCBR--></span><!--/rCRounded-->
+</a></td><td><a href="/bin/attach/CampusGrids/InstallingKestrel" rel="nofollow">
+<span class="rCRounded"><span class="rCTR"><span class="rCTL"></span><!--/rCTL-->
+<span class="twikiLinkLabel"><span class='twikiAccessKey'>A</span>ttach</span>
+</span><!--/rCTR--><span class="rCBR"><span class="rCBL"></span></span><!--/rCBR--></span><!--/rCRounded-->
+</a></td><td><a href="/bin/genpdf/CampusGrids/InstallingKestrel?pdftitle=InstallingKestrel" rel="nofollow">
+<span class="rCRounded"><span class="rCTR"><span class="rCTL"></span><!--/rCTL-->
+<span class="twikiLinkLabel">PDF</span>
+</span><!--/rCTR--><span class="rCBR"><span class="rCBL"></span></span><!--/rCBR--></span><!--/rCRounded-->
+</a></td></tr></table>
+<br class="twikiClear" /></div><!--/patternToolBar--></div><!--/twikinetTopToolBarContents--></div><!--/twikinetTopToolBar--><div id="patternBottomBar"><div id="patternBottomBarContents"><div id="twikinetBadge"><a href="http://www.twiki.net/"><img src="https://twiki.grid.iu.edu/twiki/pub/TWiki/TWikiNetSkin/twiki-badge-88x31.gif" alt="TWIKI.NET" width="88" height="31" border="0" /></a></div><!--/twikinetBadge--><div id="patternWebBottomBar"><p>
+<font size="-1">
+<a href="https://myosg.grid.iu.edu/">MyOSG</a> |
+<a href="http://is.grid.iu.edu/documentation.html">BDII</a> |
+<a href="https://ticket.grid.iu.edu/goc">GOC Ticket</a> |
+<a href="https://oim.grid.iu.edu">OIM</a> |
+<a href="http://software.grid.iu.edu">OSG Software Cache</a> |
+TWiki |
+<a href="http://osggoc.blogspot.com">GOC News Blog</a> |
+<a href="https://ticket.grid.iu.edu/goc/twiki">Report Bugs</a>
+<!-- |
+Other Operational Services:
+<a href="http://gratia-osg-prod-reports.opensciencegrid.org/gratia-reporting/">Gratia Accounting</a>
+-->
+</p>
+<p>
+<font size="-2">
+<span class="twikiRight"> <a href="http://twiki.org/"><img src="/twiki/pub/TWiki/TWikiLogos/T-logo-80x15.gif" alt="This site is powered by the TWiki collaboration platform" width="80" height="15" title="This site is powered by the TWiki collaboration platform" border="0" /></a></span>Copyright &amp;© by the contributing authors. All material on this collaboration platform is the property of the contributing authors. <br /> Ideas, requests, problems regarding this page? <a href='https://ticket.grid.iu.edu/goc/twiki'>Send feedback</a>.
+</font>
+</p></div><!--/patternWebBottomBar--></div><!-- /patternBottomBarContents--></div><!-- /patternBottomBar-->
+</div><!-- /patternPage-->
+</div><!-- /patternPageShadow-->
+</div><!-- /patternScreen-->
+</body></html>
