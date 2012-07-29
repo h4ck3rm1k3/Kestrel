@@ -17,9 +17,6 @@ Download and install a copy from GitHub_ before installing ``kestrel``.
 It uses XEP-0014 and your xmpp server needs to support that. http://xmpp.org/extensions/xep-0114.html#proto
 See also : https://bitbucket.org/legastero/kestrel/wiki/XMPP
 
-Development:
-------------
-Main development is now being done at http://github.com/legastero/Kestrel.
 
 .. _XMPP: http://xmpp.org
 .. _SleekXMPP: http://github.com/fritzy/SleekXMPP
