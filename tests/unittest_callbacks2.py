@@ -1,29 +1,30 @@
 import unittest
 import kestrel.plugins.kestrel_executor
-import sleekxmpp.plugins
+#import toxcore.plugins
 #        self.register_plugin('kestrel_executor',
 #                             {'max_tasks': 1},
 #                             module='kestrel.plugins.kestrel_executor')
 class TestPlugin : 
-    def add_event_handler(a,b,c) :
-        print ("add")
-    def add_command (a,b,c,d,e):
-        print ("add command")
-    def __getitem__(a,b) :
+    def add_event_handler(self,b,c) :
+       print ("add")
+    def add_command (self,b,c,d,e):
+       print ("add command")
+    def __getitem__(self,b) :
         print ("get")
-        return a
-    def __setitem__(a,b,c) :
+        return self
+    def __setitem__(self,b,c) :
         print ("set")
-        return a
-    def makeForm (a, ftype ):
+        return self
+    def makeForm (self, ftype ):
         print ("make form")
-        return a
-    def boundjid (a  ):
+        return self
+    def boundjid (self  ):
         print ("jidd")
         return "mike@server"
-    def addField (a , var , label , required) :
+
+    def addField (self , var , label , required) :
         print ("add field")
-        return a
+        return self
     
 class HelloworldTestCase(unittest.TestCase):
 
@@ -35,7 +36,7 @@ class HelloworldTestCase(unittest.TestCase):
         e._handle_task_command(y,y)
 
 #Worker._handle_available of <kestrel.worker.Worker object at 0x90588ac>>, False, False)
-        p Presence=
+        #p Presence=
 #Presence: <presence to="h4ck3rm1k3_worker10@h4ck3rm1k3-sixxs.mooo.com/9134b62b" from="h4ck3rm1k3_worker10@h4ck3rm1k3-sixxs.mooo.com/47843cd2" />
 # (<presence to="h4ck3rm1k3_worker10@h4ck3rm1k3-sixxs.mooo.com/9134b62b" from="h4ck3rm1k3_worker10@h4ck3rm1k3-sixxs.mooo.com/47843cd2" />,)
 

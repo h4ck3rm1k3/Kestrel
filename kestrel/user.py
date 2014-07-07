@@ -7,13 +7,12 @@
 """
 
 import os
+import sys
 import logging
 #logging.basicConfig()
-import sleekxmpp
-try:
-    from ConfigParser import ConfigParser
-except:
-    from configparser import ConfigParser
+import toxcore
+
+import ConfigParser 
 
 
 log = logging.getLogger(__name__)
@@ -33,7 +32,7 @@ def read_job(file):
                  BAZ
     """
     data = {}
-    parser = ConfigParser()
+    parser = ConfigParser.ConfigParser()
 
     try:
         parser.read(os.path.expanduser(file))
@@ -50,10 +49,10 @@ def read_job(file):
     return data['job']
 
 
-class Client(sleekxmpp.ClientXMPP):
+class Client(toxcore.ClientXMPP):
 
     def __init__(self, jid, password, config):
-        sleekxmpp.ClientXMPP.__init__(self, jid, password)
+        toxcore.ClientXMPP.__init__(self, jid, password)
 
         self.config = config
         self.single_command = False

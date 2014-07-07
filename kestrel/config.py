@@ -1,6 +1,5 @@
 import os
-import sleekxmpp
-from sleekxmpp.xmlstream import ElementBase, ET, register_stanza_plugin
+from toxcore.xmlstream import ElementBase, ET, register_stanza_plugin
 
 
 class Config(ElementBase):
@@ -80,5 +79,6 @@ def load_config(file_name):
     file_name = os.path.expanduser(file_name)
     with open(file_name, 'r+') as file:
         data = "".join([line for line in file])
-        config = Config(xml=ET.fromstring(data))
+        x = ET.fromstring(data)
+        config = Config(xml=x)
         return config

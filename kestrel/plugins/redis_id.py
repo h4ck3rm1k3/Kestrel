@@ -1,15 +1,15 @@
 """
-    SleekXMPP: The Sleek XMPP Library
+    Toxcore: The Sleek XMPP Library replacement
     Copyright (C) 2011  Nathanael C. Fritz, Lance J.T. Stout
-    This file is part of SleekXMPP.
+    This file is part of Toxcore.
 
     See the file LICENSE for copying permission.
 """
 
 import redis
 
-import sleekxmpp
-from sleekxmpp.plugins.base import base_plugin
+#import toxcore
+from toxcore.plugins.base import base_plugin
 
 
 class redis_id(base_plugin):
@@ -23,7 +23,7 @@ class redis_id(base_plugin):
     for two different Iq sessions.
 
     Redis keys:
-        sleekxmpp:id
+        toxcore:id
 
     Methods:
         new_id --
@@ -40,14 +40,14 @@ class redis_id(base_plugin):
 
     def post_init(self):
         """"""
-        self.redis.setnx('sleekxmpp:id', 0)
+        self.redis.setnx('toxcore:id', 0)
         self.xmpp.new_id = self.new_id
         self.xmpp.get_id = self.get_id
 
     def new_id(self):
         """"""
-        return "%X" % self.redis.incr('sleekxmpp:id')
+        return "%X" % self.redis.incr('toxcore:id')
 
     def get_id(self):
         """"""
-        return "%X" % int(self.redis.get('sleekxmpp:id'))
+        return "%X" % int(self.redis.get('toxcore:id'))

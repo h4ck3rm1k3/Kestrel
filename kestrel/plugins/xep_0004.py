@@ -10,13 +10,13 @@ import logging
 #logging.basicConfig()
 import copy
 
-import sleekxmpp
-from sleekxmpp import Message
-from sleekxmpp.xmlstream.handler import Callback
-from sleekxmpp.xmlstream.matcher import MatchXPath
-from sleekxmpp.xmlstream import register_stanza_plugin, ElementBase, ET, JID
-from sleekxmpp.plugins.base import base_plugin
-from sleekxmpp.thirdparty import OrderedDict
+#import toxcore
+from toxcore import Message
+from toxcore.xmlstream.handler import Callback
+from toxcore.xmlstream.matcher import MatchXPath
+from toxcore.xmlstream import register_stanza_plugin, ElementBase, ET
+from toxcore.plugins.base import base_plugin
+from toxcore.thirdparty import OrderedDict
 
 
 log = logging.getLogger(__name__)

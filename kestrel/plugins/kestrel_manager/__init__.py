@@ -6,5 +6,5 @@
     See the file LICENSE for copying permission.
 """
 
-from kestrel.plugins.kestrel_manager.manager import kestrel_manager
-from kestrel.plugins.kestrel_manager.commands import *
+#from kestrel.plugins.kestrel_manager.manager import kestrel_manager
+#from kestrel.plugins.kestrel_manager.commands import 

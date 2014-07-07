@@ -12,12 +12,12 @@ import os
 import signal
 import subprocess
 import threading
-import time
+#import time
 
 
-import sleekxmpp
-from sleekxmpp.exceptions import XMPPError
-from sleekxmpp.plugins.base import base_plugin
+#import toxcore
+from toxcore.exceptions import XMPPError
+from toxcore.plugins.base import base_plugin
 
 
 log = logging.getLogger(__name__)

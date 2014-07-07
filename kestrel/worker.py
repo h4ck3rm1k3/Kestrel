@@ -6,15 +6,15 @@
     See the file LICENSE for copying permission.
 """
 
-import logging
+#import logging
 #logging.basicConfig()
-import sleekxmpp
+import toxcore
 
 
-class Worker(sleekxmpp.ClientXMPP):
+class Worker(toxcore.ClientXMPP):
 
     def __init__(self, jid, password, config):
-        sleekxmpp.ClientXMPP.__init__(self, jid, password)
+        toxcore.ClientXMPP.__init__(self, jid, password)
 
         if config is None:
             config = {}

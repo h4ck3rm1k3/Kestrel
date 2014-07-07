@@ -47,7 +47,7 @@ class Kestrel(object):
             p.sadd('workers:available', name)
             p.execute()
 
-            queued_jobs = self.redis.smembers('jobs:queued')
+            #queued_jobs = self.redis.smembers('jobs:queued')
             jobs = self.redis.sinter(('jobs:queued', 'worker:%s:jobs' % name))
             for job in jobs:
                 task = self.redis.srandmember('job:%s:tasks:queued' % job)

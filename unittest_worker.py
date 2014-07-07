@@ -1,6 +1,6 @@
 import unittest
 import logging
-import sleekxmpp
+
 import kestrel.plugins.kestrel_executor
 import pprint
 log = logging.getLogger(__name__)
@@ -9,16 +9,16 @@ logging.basicConfig()
 log.setLevel(1)
 
 class TestXmpp:
-    def add_event_handler(a,b,c) :
+    def add_event_handler(self, a,b,c) :
         print("test")
 
     def __getitem__(self, index):
         print("get item")
 
-    def __get_item__() :
+    def __get_item__(self) :
         print("get item")
 
-    def ___get_item___() :
+    def ___get_item___(self) :
         print("get item")
 
 class HelloworldTestCase(unittest.TestCase):
@@ -34,15 +34,15 @@ class HelloworldTestCase(unittest.TestCase):
         executor.post_init()
         print "post init"
 
-        event ={} 
+#        event ={} 
 #        executor.start(event)
 #calls    self.xmpp['xep_0050'].add_command(self.xmpp.boundjid,
 #AttributeError: 'NoneType' object has no attribute 'add_command'
 
         print "start"
         
-        iq = {} 
-        session = {}
+        #iq = {} 
+        #session = {}
 #        executor._handle_task_command(iq, session)
 # form = self.xmpp['xep_0004'].makeForm(ftype='form')
 

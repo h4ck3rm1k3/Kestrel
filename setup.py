@@ -1,4 +1,4 @@
-import sys, os
+import os
 from distutils.core import setup
 
 import kestrel
@@ -18,13 +18,14 @@ setup(name='kestrel',
                    'Operating System :: OS Independent',
                    'Topic :: System :: Distributed Computing',
                    'Programming Language :: Python'],
-      keywords='xmpp sleekxmpp cloud grid',
+      keywords='xmpp toxim cloud grid',
       author='Lance Stout',
       author_email='lancestout@gmail.com',
       url='http://github.com/legastero/kestrel',
       license='Apache License 2.0',
       packages=['kestrel', 'kestrel/plugins', 'kestrel/plugins/kestrel_manager'],
-      scripts=['scripts/kestrel'],
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=['sleekxmpp'])
+      scripts=['scripts/kestrel']
+      # , include_package_data=True
+      # , zip_safe=False
+      # , install_requires=['toxcore']
+)

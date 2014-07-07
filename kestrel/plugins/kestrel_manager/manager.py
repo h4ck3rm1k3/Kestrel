@@ -8,14 +8,14 @@
 
 
 import logging
-import threading
+#import threading
 
-import sleekxmpp
-from sleekxmpp.plugins import base
-from sleekxmpp.xmlstream.handler import Callback
-from sleekxmpp.xmlstream.matcher import MatchXPath, StanzaPath
-from sleekxmpp.xmlstream.stanzabase import ElementBase, ET, JID
-from sleekxmpp.stanza.iq import Iq
+#import toxcore
+from toxcore.plugins import base
+from toxcore.xmlstream.handler import Callback
+#from toxcore.xmlstream.matcher import MatchXPath, StanzaPath
+from toxcore.xmlstream.matcher import StanzaPath
+
 
 from kestrel.backend import Kestrel
 
@@ -258,7 +258,8 @@ class kestrel_manager(base.base_plugin):
 
     def _handle_cancel_job(self, data):
         user, job = data
-        cancellations = self.kestrel.cancel_job(job, user)
+        #cancellations = 
+        self.kestrel.cancel_job(job, user)
 
     def _handle_register_worker(self, data):
         worker, caps = data
@@ -323,7 +324,8 @@ class kestrel_manager(base.base_plugin):
 
     def _dispatch_task_command(self, iq, session):
         job = session['job']
-        task = session['task']
+        #task = 
+        #session['task']
 
         if self.kestrel.task_finish(session['worker'],
                                     session['job_id'],

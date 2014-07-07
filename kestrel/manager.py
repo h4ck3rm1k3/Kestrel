@@ -9,17 +9,14 @@
 import logging
 #logging.basicConfig()
 
-#
+#import random
 
-
-import random
-
-import sleekxmpp
-from sleekxmpp.xmlstream import JID
+import toxcore
+from toxcore.xmlstream import JID
 
 log = logging.getLogger(__name__)
 
-class Manager(sleekxmpp.ComponentXMPP):
+class Manager(toxcore.ComponentXMPP):
 
     def __init__(self, jid, password, host, port, config):
 #        log = logging.getLogger(__name__)
@@ -31,7 +28,7 @@ class Manager(sleekxmpp.ComponentXMPP):
         logging.log(logging.DEBUG, "logging for debugging should work now.2")
         print (jid, password, host, port)
         log.debug("now setup the component ")
-        sleekxmpp.ComponentXMPP.__init__(self, jid, password, host, port)
+        toxcore.ComponentXMPP.__init__(self, jid, password, host, port)
 
         self.config = config
 

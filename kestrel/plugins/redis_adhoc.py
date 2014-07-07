@@ -1,7 +1,7 @@
 """
-    SleekXMPP: The Sleek XMPP Library
+    Toxcore: The Sleek XMPP Library replacement
     Copyright (C) 2011  Nathanael C. Fritz, Lance J.T. Stout
-    This file is part of SleekXMPP.
+    This file is part of Toxcore.
 
     See the file LICENSE for copying permission.
 """
@@ -12,9 +12,9 @@ import logging
 import pickle
 import types
 
-import sleekxmpp
-from sleekxmpp.xmlstream import JID, ElementBase, ET
-from sleekxmpp.plugins.base import base_plugin
+#import toxcore
+from toxcore.xmlstream import JID, ElementBase, ET
+from toxcore.plugins.base import base_plugin
 
 
 log = logging.getLogger(__name__)

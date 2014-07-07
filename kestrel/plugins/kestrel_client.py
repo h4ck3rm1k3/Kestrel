@@ -14,8 +14,8 @@ try:
 except:
     import Queue as queue
 
-import sleekxmpp
-from sleekxmpp.plugins.base import base_plugin
+#import toxcore
+from toxcore.plugins.base import base_plugin
 
 
 log = logging.getLogger(__name__)
@@ -149,7 +149,7 @@ class kestrel_client(base_plugin):
         iq = self.xmpp['xep_0050'].send_command(self.pool_jid,
                                                'pool_status')
         if iq is not None and iq['type'] != 'error':
-            session = iq['command']['sessionid']
+            #session = iq['command']['sessionid']
             form = iq['command']['form']
             return form['values']
         log.error("Could not obtain the pool's status.")
@@ -159,7 +159,7 @@ class kestrel_client(base_plugin):
         iq = self.xmpp['xep_0050'].send_command(self.submit_jid,
                                                'job_status')
         if iq is not None and iq['type'] != 'error':
-            session = iq['command']['sessionid']
+            #session = iq['command']['sessionid']
             form = iq['command']['form']
             return form['items']
         log.error("Could not obtain the job's status.")

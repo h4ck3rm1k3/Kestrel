@@ -9,8 +9,8 @@
 
 import logging
 
-import sleekxmpp
-from sleekxmpp.plugins.base import base_plugin
+#import toxcore
+from toxcore.plugins.base import base_plugin
 
 
 log = logging.getLogger(__name__)
