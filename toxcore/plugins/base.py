@@ -2,11 +2,20 @@ import toxcore
 
 class Xep0050(toxcore.ComponentXMPP):
     pass
+
+class Form :
+    def addField(self, var=None, label=None, required=None):
+        pass
+
+class Xep0004(toxcore.ComponentXMPP):
+    def makeForm(self, ftype=None):
+        return Form()
       
 class XMPP(toxcore.ComponentXMPP):
     def __init__(self):
         self._components = {}
         self._components['xep_0050']=Xep0050()
+        self._components['xep_0004']=Xep0004()
 
     def __getitem__(self, x):
         return self._components[x]
@@ -39,6 +48,7 @@ class base_plugin :
     def post_init(self):
         pass
 
+    @property
     def whitelist(self):
         pass
 

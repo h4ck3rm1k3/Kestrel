@@ -28,8 +28,8 @@ class kestrel_executor(base_plugin):
     def plugin_init(self):
         self.description = "Execute commands with optional cleanup"
 
-        self.whitelist = self.config.get('whitelist', [])
-        self.max_tasks = self.config.get('max_tasks', 1)
+        self._whitelist = self.config.get('whitelist', [])
+        self._max_tasks = self.config.get('max_tasks', 1)
 
         self.tasks = {}
         self.lock = threading.Lock()
@@ -91,6 +91,8 @@ class kestrel_executor(base_plugin):
         if self.whitelist:
             b= iq['from'].bare
             wl = self.whitelist
+            print b
+            print wl
             if b not in wl:
                 raise XMPPError('not-authorized', etype='cancel')
 
