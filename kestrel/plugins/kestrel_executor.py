@@ -89,7 +89,9 @@ class kestrel_executor(base_plugin):
             self._cancel(session['id'])
 
         if self.whitelist:
-            if iq['from'].bare not in self.whitelist:
+            b= iq['from'].bare
+            wl = self.whitelist
+            if b not in wl:
                 raise XMPPError('not-authorized', etype='cancel')
 
         form = self.xmpp['xep_0004'].makeForm(ftype='form')

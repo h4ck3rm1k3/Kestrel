@@ -24,6 +24,10 @@ class TestPlugin :
     def addField (self, var , label , required) :
         print ("add field")
         return self
+
+    @property
+    def bare(self):
+        pass
     
 class HelloworldTestCase(unittest.TestCase):
 

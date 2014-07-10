@@ -1,10 +1,26 @@
-#
+#import toxcore
+# from toxcore import JID
 
 class BaseXMPP :
+    def __init__(self):
+        self._plugins={
+            #'xep_0030' : Plugin()
+        }
     def register_plugin(self, name, config=None, module=None):
         pass
 
-    def add_event_handler(self, name, func):
+    @property
+    def plugin(self):
+        return self._plugins
+
+    def register_handler(self, callback):
+        pass
+
+    @property
+    def default_ns(self):
+        return 'something'
+
+    def add_event_handler(self, name, func, threaded=None):
         pass
 
     @property
@@ -14,29 +30,46 @@ class BaseXMPP :
     def get_roster(self):
         pass
 
-    def event(self, event):
+    def event(self, event, param=None):
         pass
 
     def disconnect(self):
         pass
 
-    def send_presence(self,pfrom=None, pto=None, ptype=None):
+    def send_presence(self,pfrom=None, pto=None, ptype=None, pstatus=None):
         pass
+    def send_message(self,mto=None, mfrom=None, mbody=None):
+        pass
+
+    def response_timeout(self):
+        return 60 # just some number for now
+
+    def schedule(self, name, number, event, repeat=None):
+        pass
+
+    @property
+    def stop(self):
+        return
 
 class ClientXMPP(BaseXMPP) :
     def __init__(self, jid, password, host=None, port=None):
         pass
 
 class JID :
+    @property
     def full (self):
-        pass
+        return "TODO"
+
+    @property
+    def bare(self):
+        return "TODO"
 
 class ComponentXMPP(BaseXMPP):
 
-    def __init__(self, jid, password, host, port):
+    def __init__(self, jid=None, password=None, host=None, port=None):
         pass
-
-
+    def add_command (self,b,c,d,e):
+        print ("add command")
 
     @property
     def boundjid(self):
