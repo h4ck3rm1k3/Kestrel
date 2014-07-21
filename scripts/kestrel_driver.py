@@ -14,7 +14,12 @@ import logging
 
 import optparse
 
-from kestrel import __version__, load_config, Worker, Manager, Client
+from kestrel import __version__
+from kestrel.config import load_config
+from kestrel.worker import Worker
+from kestrel.manager import Manager
+from kestrel.user import Client
+
 
 def hack_log() :
     for i in logging.Logger.manager.loggerDict.keys(): 
