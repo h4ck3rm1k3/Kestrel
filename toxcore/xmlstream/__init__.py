@@ -1,4 +1,10 @@
 #
+
+class Item :
+    def __getitem__(self, item):
+        return Item()
+
+
 class ElementBase:
 
     def __init__(self, xml=None, str=None):
@@ -16,6 +22,9 @@ class ElementBase:
     @property
     def xml(self):
         pass
+
+    def __getitem__(self, item):
+        return Item()
 
 class ET:
     @staticmethod

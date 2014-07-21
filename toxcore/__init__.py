@@ -1,6 +1,16 @@
 #import toxcore
 # from toxcore import JID
 
+class Item :
+    def __getitem__(self, item):
+        return Item()
+
+    def add_identity(self, category, itype, name):
+        pass
+
+    def add_feature(self, cap=None, name=None):
+        pass
+
 class BaseXMPP :
     def __init__(self):
         self._plugins={
@@ -50,6 +60,9 @@ class BaseXMPP :
     @property
     def stop(self):
         return
+
+    def __getitem__(self, item):
+        return Item()
 
 class ClientXMPP(BaseXMPP) :
     def __init__(self, jid, password, host=None, port=None):
