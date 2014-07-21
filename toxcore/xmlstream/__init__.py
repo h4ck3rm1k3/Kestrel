@@ -41,12 +41,6 @@ class ET:
         def append(self, x):
             pass
 
-class JID:
-    """
-    the tox.im client id  
-    64 bit hash
-    """
-    pass 
 
 def register_stanza_plugin(x,y) :
     pass

@@ -5,7 +5,7 @@ class Item :
     def __getitem__(self, item):
         return Item()
 
-    def add_identity(self, category, itype, name):
+    def add_identity(self, category, itype, name, jid=None, lang=None):
         pass
 
     def add_feature(self, cap=None, name=None):
@@ -17,6 +17,9 @@ class BaseXMPP :
             #'xep_0030' : Plugin()
         }
     def register_plugin(self, name, config=None, module=None):
+        pass
+
+    def connect(self):
         pass
 
     @property
@@ -69,6 +72,9 @@ class ClientXMPP(BaseXMPP) :
         pass
 
 class JID :
+    def __init__(self, value=None):
+        pass
+
     @property
     def full (self):
         return "TODO"

@@ -12,7 +12,7 @@ import logging
 #import random
 
 import toxcore
-from toxcore.xmlstream import JID
+from toxcore import JID
 
 log = logging.getLogger(__name__)
 
@@ -65,10 +65,13 @@ class Manager(toxcore.ComponentXMPP):
                              module='kestrel.plugins.redis_roster')
 
 
+        _pool = self.config['pool']
+        pool = JID(_pool)
+        jobs = JID(self.config['jobs'])
         self.register_plugin(
                 'kestrel_manager',
-                {'pool_jid': JID(self.config['pool']),
-                 'job_jid': JID(self.config['jobs'])},
+                {'pool_jid': pool, 
+                 'job_jid': jobs},
                 module='kestrel.plugins.kestrel_manager')
 
         self.add_event_handler("session_start", self.start)
