@@ -1,6 +1,8 @@
 #import toxcore
 # from toxcore import JID
 
+from time import sleep, time
+
 class Item :
     def __getitem__(self, item):
         return Item()
@@ -11,7 +13,12 @@ class Item :
     def add_feature(self, cap=None, name=None):
         pass
 
-class BaseXMPP :
+from tox import Tox
+
+# node server from https://wiki.tox.im/Nodes
+SERVER = ["54.199.139.199", 33445, "7F9C31FE850E97CEFD4C4591DF93FC757C7C12549DDD55F8EEAECC34FE76C029"]
+
+class BaseXMPP(Tox) :
     def __init__(self):
         self._plugins={
             #'xep_0030' : Plugin()
@@ -19,12 +26,35 @@ class BaseXMPP :
     def register_plugin(self, name, config=None, module=None):
         pass
 
+    # def connect(self):
+    #     print 'connecting'
+    #     super(self).connect()
     def connect(self):
-        pass
+        print('connecting...')
+        self.bootstrap_from_address(SERVER[0], 1, SERVER[1], SERVER[2])
+
+        # check if connected
+        checked = False
+
+        while True:
+            print "do"
+            self.do()
+            status = self.isconnected()
+
+            print "waiting status",status
+            if not checked and status:
+                print('Connected to DHT.')
+                checked = True
+                return True
+            sleep(2)
 
     @property
     def plugin(self):
         return self._plugins
+
+    def process(self, threaded=None):
+        print "process",threaded
+        return True
 
     def register_handler(self, callback):
         pass

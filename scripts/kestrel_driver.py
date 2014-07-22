@@ -25,9 +25,9 @@ def hack_log() :
     for i in logging.Logger.manager.loggerDict.keys(): 
         ll = logging.getLogger(i)
         l = ll.level
-        if (l != 1) :
-            print "fixing log of %s" % i
-            ll.setLevel(1)
+        #if (l != 1) :
+        #print "fixing log of %s" % i
+        ll.setLevel(0)
 
 
 def start_worker(conf, args):
@@ -160,18 +160,16 @@ if __name__ == '__main__':
 
     conf = load_config(options.configfile)
 
-    logging.basicConfig()
+    logging.basicConfig(level=1)
     log = logging.getLogger(__name__)
-    log.setLevel(1) # low level
-    log.debug("test2")
+    log.setLevel(0) # low level
     hack_log()
-#print "get logger"
-#print "set logging"
-#    logging.basicConfig(level=options.loglevel, 
-#                        format='%(asctime)s %(levelname)-8s %(message)s')
 
-    log.debug("logging should work now")
-    logging.log(logging.DEBUG, "logging for debugging should work now.")
+    #    logging.basicConfig(level=options.loglevel, 
+    #                        format='%(asctime)s %(levelname)-8s %(message)s')
+    #    log.debug("logging should work now")
+    #   logging.log(logging.DEBUG, "logging for debugging should work now.")
+
 
     handlers = {'worker': start_worker,
                 'manager': start_manager,

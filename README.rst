@@ -22,3 +22,12 @@ See also : https://bitbucket.org/legastero/kestrel/wiki/XMPP
 .. _SleekXMPP: http://github.com/fritzy/SleekXMPP
 .. _GitHub: http://github.com/fritzy/SleekXMPP
 .. _PyPI: http://pypi.python.org
+
+
+Run :
+
+PYTHONPATH=/mnt/data/home/mdupont/new3/Kestrel python scripts/kestrel_driver.py worker
+PYTHONPATH=/mnt/data/home/mdupont/new3/Kestrel python scripts/kestrel_driver.py manager
+PYTHONPATH=/mnt/data/home/mdupont/new3/Kestrel python scripts/kestrel_driver.py submit
+PYTHONPATH=/mnt/data/home/mdupont/new3/Kestrel python scripts/kestrel_driver.py cancel
+PYTHONPATH=/mnt/data/home/mdupont/new3/Kestrel python  scripts/kestrel_driver.py status
