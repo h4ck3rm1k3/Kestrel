@@ -53,7 +53,20 @@ class BaseXMPP(Tox) :
         return self._plugins
 
     def process(self, threaded=None):
-        print "process",threaded
+        print "enter process",threaded
+        checked = False
+        while True:
+            status = self.isconnected()
+            if not checked and status:
+                print('Connected to DHT.')
+                checked = True
+            if checked and not status:
+                print('Disconnected from DHT.')
+                self.connect()
+                checked = False
+            self.do()
+            sleep(0.01)
+        self.do()
         return True
 
     def register_handler(self, callback):
