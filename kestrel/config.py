@@ -74,11 +74,20 @@ register_stanza_plugin(ManagerConfig, XMPPConfig)
 register_stanza_plugin(ClientConfig, XMPPConfig)
 register_stanza_plugin(ManagerConfig, RedisConfig)
 
+import ConfigParser
 
-def load_config(file_name):
+def load_xml_config(file_name):
     file_name = os.path.expanduser(file_name)
     with open(file_name, 'r+') as file:
         data = "".join([line for line in file])
+        #print "config", data
         x = ET.fromstring(data)
+        print x
         config = Config(xml=x)
         return config
+
+def load_config(file_name):
+    file_name = os.path.expanduser(file_name)
+    config = ConfigParser.RawConfigParser()
+    config.read(file_name)
+    return config

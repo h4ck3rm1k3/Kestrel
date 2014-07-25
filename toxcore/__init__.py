@@ -2,6 +2,7 @@
 # from toxcore import JID
 
 from time import sleep, time
+import os.path
 
 class Item :
     def __getitem__(self, item):
@@ -15,11 +16,17 @@ class Item :
 
 from tox import Tox
 
-# node server from https://wiki.tox.im/Nodes
-SERVER = ["54.199.139.199", 33445, "7F9C31FE850E97CEFD4C4591DF93FC757C7C12549DDD55F8EEAECC34FE76C029"]
+
+
 
 class BaseXMPP(Tox) :
-    def __init__(self):
+    def __init__(self,identity_file, config):
+        self._identity_file=identity_file
+        self._config=config
+        self.bootstrap_ip = config.get("TOX","node_ip")
+        self.bootstrap_port = config.get("TOX","port" )
+        self.bootstrap_id = config.get("TOX","ID")
+
         self._plugins={
             #'xep_0030' : Plugin()
         }
@@ -30,8 +37,19 @@ class BaseXMPP(Tox) :
     #     print 'connecting'
     #     super(self).connect()
     def connect(self):
+
+        if  os.path.exists(self._identity_file):
+            self.load_from_file(self._identity_file)
+
+        self.set_name("Kestrel")
+        print('ID: %s' % self.get_address())
+
         print('connecting...')
-        self.bootstrap_from_address(SERVER[0], 1, SERVER[1], SERVER[2])
+        self.bootstrap_from_address(self.bootstrap_ip, 
+                                    1, 
+                                    int(self.bootstrap_port), 
+                                    self.bootstrap_id
+        )
 
         # check if connected
         checked = False
@@ -44,6 +62,9 @@ class BaseXMPP(Tox) :
             print "waiting status",status
             if not checked and status:
                 print('Connected to DHT.')
+
+                self.save_to_file(self._identity_file)
+
                 checked = True
                 return True
             sleep(2)
@@ -111,8 +132,8 @@ class BaseXMPP(Tox) :
         return Item()
 
 class ClientXMPP(BaseXMPP) :
-    def __init__(self, jid, password, host=None, port=None):
-        pass
+    def __init__(self, identity_file, config):
+        super(ClientXMPP,self).__init__(identity_file, config)
 
 class JID :
     def __init__(self, value=None):
@@ -128,8 +149,6 @@ class JID :
 
 class ComponentXMPP(BaseXMPP):
 
-    def __init__(self, jid=None, password=None, host=None, port=None):
-        pass
     def add_command (self,b,c,d,e):
         print ("add command")
 

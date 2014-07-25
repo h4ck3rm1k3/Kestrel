@@ -26,20 +26,19 @@ class ElementBase:
     def __getitem__(self, item):
         return Item()
 
-class ET:
-    @staticmethod
-    def fromstring(astr):
-        return astr
+from xml.etree import cElementTree as ET
 
-    def member(self):
-        pass
-
-    class Element :
-
-        def __init__(self, string):
-            pass
-        def append(self, x):
-            pass
+# class ET:
+#     @staticmethod
+#     def fromstring(astr):
+#         return astr
+#     def member(self):
+#         pass
+#     class Element :
+#         def __init__(self, string):
+#             pass
+#         def append(self, x):
+#             pass
 
 
 def register_stanza_plugin(x,y) :

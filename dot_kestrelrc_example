@@ -1,0 +1,21 @@
+[TOX]
+# node server from https://wiki.tox.im/Nodes
+node_ip = 54.199.139.199
+port    = 33445
+ID      = 7F9C31FE850E97CEFD4C4591DF93FC757C7C12549DDD55F8EEAECC34FE76C029
+
+[worker]
+identity_file    = workerfile1.dat
+manager_id=E8D592E8FA1BF5A557526C5C80442C5FDBCBF717367EB7B8998CDF0BC13CEF6607FAFA2ADA81
+
+[redis]
+host=
+port=
+database=
+
+[manager]
+identity_file    = managerfile1.dat
+# the pool is a jabber id for the pool of workers
+pool=abz
+# the jobs is the jabber id for jobs
+jobs=dfsdf

@@ -10,6 +10,7 @@
 
 import os
 import sys
+sys.path.append("..") 
 import logging
 
 import optparse
@@ -31,9 +32,7 @@ def hack_log() :
 
 
 def start_worker(conf, args):
-    xmpp = Worker(conf['worker']['xmpp']['jid'],
-                  conf['worker']['xmpp']['password'],
-                  conf['worker'])
+    xmpp = Worker(conf.get('worker','identity_file'), conf)
     if xmpp.connect():
         xmpp.process(threaded=False)
     else:
@@ -42,18 +41,10 @@ def start_worker(conf, args):
 def start_manager(conf, args):
 #    print conf['manager']['xmpp']
     hack_log()
-    print ("jid", conf['manager']['xmpp']['jid'], "pass",     conf['manager']['xmpp']['password'],                   conf['manager']['xmpp']['server'],                   conf['manager']['xmpp']['port'],                   conf['manager'])
     logging.log(logging.CRITICAL, "starting1")
-    logging.log(logging.CRITICAL, "starting1")
-    xmpp = Manager(conf['manager']['xmpp']['jid'],
-                   conf['manager']['xmpp']['password'],
-                   conf['manager']['xmpp']['server'],
-                   conf['manager']['xmpp']['port'],
-                   conf['manager'])
+    xmpp = Manager(conf.get('manager','identity_file'),conf)
     logging.log(logging.CRITICAL, "starting, going to connect")
-
     hack_log()
-
 
     if xmpp.connect():
         logging.log(logging.CRITICAL, "connected, going to process")

@@ -13,30 +13,17 @@ import toxcore
 
 class Worker(toxcore.ClientXMPP):
 
-    def __init__(self, jid, password, config):
-        toxcore.ClientXMPP.__init__(self, jid, password)
+    def __init__(self, identity_file, config):
+        toxcore.ClientXMPP.__init__(self, identity_file, config)
 
         if config is None:
             config = {}
-        self.config = config
+        self._config = config
+        self._manager_id = self._config.get('worker','manager_id')
 
-        self.manager = self.config['manager']
-
-        self.register_plugin('xep_0030')
-        self.register_plugin('xep_0004',
-                             module='kestrel.plugins.xep_0004')
-        self.register_plugin('xep_0050')
-        self.register_plugin('xep_0199')
         self.register_plugin('kestrel_executor',
                              {'max_tasks': 1},
                              module='kestrel.plugins.kestrel_executor')
-
-        self['xep_0030'].add_identity(category='client',
-                                      itype='bot',
-                                      name='Kestrel Worker')
-        self['xep_0030'].add_feature('kestrel:tasks')
-        for cap in self.config['features']:
-            self['xep_0030'].add_feature(cap, 'kestrel:tasks:capabilities')
 
         self.add_event_handler("session_start", self.start)
         self.add_event_handler("got_online", self.manager_online)

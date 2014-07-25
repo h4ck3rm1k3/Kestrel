@@ -18,31 +18,27 @@ log = logging.getLogger(__name__)
 
 class Manager(toxcore.ComponentXMPP):
 
-    def __init__(self, jid, password, host, port, config):
-#        log = logging.getLogger(__name__)
-        print ("get logger")
-#        log.setLevel(logging.DEBUG)
-#        print "init manager2"
+    def __init__(self, identity_file , config):
+        super(Manager,self).__init__(identity_file, config)
         log.debug("in manager class2 ")
         log.debug("now setup the component ")
         logging.log(logging.DEBUG, "logging for debugging should work now.2")
-        print (jid, password, host, port)
+
         log.debug("now setup the component ")
-        toxcore.ComponentXMPP.__init__(self, jid, password, host, port)
 
         self.config = config
 
         print ("config",self.config)
-        print ("pool",self.config['pool'])
-        print ("jobs",self.config['jobs'])
-        print ("redis host",self.config['redis']['host'])
-        print ("redis port",self.config['redis']['port'])
-        print ("redis db",self.config['redis']['database'])
+        print ("pool",self.config.get('manager','pool'))
+        #print ("jobs",self.config['jobs'])
+        print ("redis host",self.config.get('redis','host'))
+        print ("redis port",self.config.get('redis','port'))
+        print ("redis db",self.config.get('redis','database'))
 
         self.redis_config = {
-                'host': self.config['redis']['host'],
-                'port': self.config['redis']['port'],
-                'db': self.config['redis']['database']}
+                'host': self.config.get('redis','host'),
+                'port': self.config.get('redis','port'),
+                'db': self.config.get('redis','database')}
 
         self.register_plugin('xep_0030')
         self.register_plugin('xep_0092')
@@ -65,9 +61,9 @@ class Manager(toxcore.ComponentXMPP):
                              module='kestrel.plugins.redis_roster')
 
 
-        _pool = self.config['pool']
+        _pool = self.config.get('manager','pool')
         pool = JID(_pool)
-        jobs = JID(self.config['jobs'])
+        jobs = JID(self.config.get('manager','jobs'))
         self.register_plugin(
                 'kestrel_manager',
                 {'pool_jid': pool, 
