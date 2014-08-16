@@ -24,8 +24,15 @@ setup(name='kestrel',
       url='http://github.com/legastero/kestrel',
       license='Apache License 2.0',
       packages=['kestrel', 'kestrel/plugins', 'kestrel/plugins/kestrel_manager'],
-      scripts=['scripts/kestrel']
-      # , include_package_data=True
+      scripts=['scripts/kestrel_driver.py'],
+      
+      requires=[
+          "redis",
+          "pythoscope",
+          "pyunit",
+          "nosetests",
+    ],
+ # , include_package_data=True
       # , zip_safe=False
       # , install_requires=['toxcore']
 )
