@@ -14,9 +14,8 @@ install:
 
 # command to run tests
 script: 
-  - python setup.py test -q
   - nosetests
-  - flake8 pyflakes setup.py
+  - flake8 setup.py */*.py */*/*.py */*/*/*.py
 
 services:
   - redis-server
