@@ -28,9 +28,7 @@ setup(name='kestrel',
       
       requires=[
           "redis",
-          "pythoscope",
-          "pyunit",
-          "nosetests",
+          "nose",
     ],
  # , include_package_data=True
       # , zip_safe=False

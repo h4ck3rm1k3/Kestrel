@@ -1,4 +1,2 @@
 redis
-pythoscope
-pyunit
-nosetests
+nose
