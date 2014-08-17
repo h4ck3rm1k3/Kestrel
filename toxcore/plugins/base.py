@@ -12,10 +12,10 @@ class Xep0004(toxcore.ComponentXMPP):
         return Form()
       
 class XMPP(toxcore.ComponentXMPP):
-    def __init__(self):
+    def __init__(self, config):
         self._components = {}
-        self._components['xep_0050']=Xep0050()
-        self._components['xep_0004']=Xep0004()
+        self._components['xep_0050']=Xep0050(config)
+        self._components['xep_0004']=Xep0004(config)
 
     def __getitem__(self, x):
         return self._components[x]
@@ -34,8 +34,8 @@ class Config:
 
 class base_plugin :
 
-    def __init__(self, xmpp, config):
-        self._xmpp= XMPP()
+    def __init__(self, config, xmpp=None):
+        self._xmpp= XMPP(config)
         
     @property
     def config (self):

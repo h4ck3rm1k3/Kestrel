@@ -18,8 +18,8 @@ log = logging.getLogger(__name__)
 
 class Manager(toxcore.ComponentXMPP):
 
-    def __init__(self, identity_file , config):
-        super(Manager,self).__init__(identity_file, config)
+    def __init__(self,config):
+        super(Manager,self).__init__(config)
         log.debug("in manager class2 ")
         log.debug("now setup the component ")
         logging.log(logging.DEBUG, "logging for debugging should work now.2")
@@ -81,6 +81,9 @@ class Manager(toxcore.ComponentXMPP):
 
     def start(self, event):
         print ("starting manager")
+        if not self.roster:
+            print ("roster is empty!")
+            return
         for comp_jid in self.roster:
             for jid in self.roster[comp_jid]:
                 self.send_presence(pfrom=comp_jid, pto=jid)

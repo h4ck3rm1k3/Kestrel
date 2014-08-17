@@ -20,9 +20,10 @@ from tox import Tox
 
 
 class BaseXMPP(Tox) :
-    def __init__(self,identity_file, config):
-        self._identity_file=identity_file
+    def __init__(self,config):
+        
         self._config=config
+        self._identity_file = config.get("TOX","identity_file")
         self.bootstrap_ip = config.get("TOX","node_ip")
         self.bootstrap_port = config.get("TOX","port" )
         self.bootstrap_id = config.get("TOX","ID")
