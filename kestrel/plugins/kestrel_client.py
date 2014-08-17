@@ -35,7 +35,7 @@ class kestrel_client(base_plugin):
         self.timeout = 4 * self.xmpp.response_timeout
 
     def submit_job(self, job):
-        reqs = job.get('requires', '')
+        reqs = job.requires()
         if isinstance(reqs, str):
             reqs = reqs.upper()
             reqs = reqs.split()
@@ -70,8 +70,8 @@ class kestrel_client(base_plugin):
         reqs = session['requirements']
         form = self.xmpp['xep_0004'].makeForm(ftype='submit')
         form.addField(var='command', value=job['command'])
-        form.addField(var='cleanup', value=job.get('cleanup', ''))
-        form.addField(var='queue', value=job.get('queue', '1'))
+        form.addField(var='cleanup', value=job.cleanup())
+        form.addField(var='queue', value=job.queue())
         form.addField(var='requirements', ftype='text-multi',
                       value="\n".join(reqs))
 

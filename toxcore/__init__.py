@@ -31,7 +31,17 @@ class BaseXMPP(Tox) :
         self._plugins={
             #'xep_0030' : Plugin()
         }
+
     def register_plugin(self, name, config=None, module=None):
+        pass
+
+    def start_command(self, jobid, command, session):
+        pass
+
+    def send_command(self, jobid, command):
+        pass
+
+    def prep_handlers(self, handlers):
         pass
 
     # def connect(self):
@@ -119,6 +129,7 @@ class BaseXMPP(Tox) :
     def send_message(self,mto=None, mfrom=None, mbody=None):
         pass
 
+    @property
     def response_timeout(self):
         return 60 # just some number for now
 

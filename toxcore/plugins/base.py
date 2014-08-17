@@ -36,7 +36,18 @@ class base_plugin :
 
     def __init__(self, config, xmpp=None):
         self._xmpp= XMPP(config)
-        
+    
+    
+
+    @property
+    def pool_jid(self):
+        return "somejid"
+
+
+    @property
+    def submit_jid(self):
+        pass
+
     @property
     def config (self):
         return Config()

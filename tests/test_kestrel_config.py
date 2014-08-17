@@ -9,7 +9,7 @@ class TestWorkerConfig(unittest.TestCase):
         worker_config = WorkerConfig()
         expected = set([])
         self.assertEqual(expected, worker_config.get_features())
-        assert False  # TODO: implement your test here
+        #assert False  # TODO: implement your test here
 
 class TestRedisConfig(unittest.TestCase):
     def test_get_port(self):
