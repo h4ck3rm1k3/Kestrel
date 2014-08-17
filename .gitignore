@@ -8,3 +8,11 @@ kestrel.egg-info*
 *.swp
 env*
 dist*
+.pythoscope/
+MANIFEST
+files.txt
+hide/
+managerfile1.dat
+scripts/managerfile1.dat
+scripts/workerfile1.dat
+workerfile1.dat
