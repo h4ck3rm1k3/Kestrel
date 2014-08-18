@@ -38,7 +38,6 @@ class base_plugin :
         self._xmpp= XMPP(config)
     
     
-
     @property
     def pool_jid(self):
         return "somejid"
