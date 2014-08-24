@@ -1,2 +1,78 @@
-class Base :
-    pass
+from toxcore import JID
+import toxcore
+
+#from  kestrel.plugins.xep_0004 import xep_0004
+
+#import kestrel.plugins.xep_0004
+
+# class Xep0050(toxcore.ComponentXMPP):
+#     pass
+
+     
+class XMPP(toxcore.ComponentXMPP):
+    def __init__(self, config):
+        self._components = {}
+        self._components['xep_0050']=Xep0050(config)
+        self._components['xep_0004']=Xep0004(config)
+
+    def __getitem__(self, x):
+        return self._components[x]
+
+    def user_jobs(self, user):
+        return []
+        
+class Config:
+
+    def get(self, name, default=""):
+        if name == 'jid':
+            return JID(default)
+        else:
+            print "config get %s with default %s" %(name,default)
+            return default
+
+
+class BasePlugin :
+
+    def __init__(self, config, xmpp=None):
+        self._xmpp= XMPP(config)
+
+    
+    @property
+    def pool_jid(self):
+        return "somejid"
+
+    @property
+    def backend(self):
+        return self._xmpp
+
+    # @property
+    # def kestrel(self):
+    #     return self._kestrel
+
+    # @kestrel.setter
+    # def kestrel(self,value):
+    #     self._kestrel = value
+
+    @property
+    def submit_jid(self):
+        pass
+
+    @property
+    def config (self):
+        return Config()
+
+    @property
+    def xmpp (self):
+        return self._xmpp
+
+    def post_init(self):
+        pass
+
+    @property
+    def whitelist(self):
+        pass
+
+    @property
+    def jid(self):
+        return toxcore.JID()
+

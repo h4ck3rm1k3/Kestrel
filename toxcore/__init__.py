@@ -3,6 +3,7 @@
 
 from time import sleep, time
 import os.path
+from tox import Tox
 
 class Item :
     def __getitem__(self, item):
@@ -13,11 +14,6 @@ class Item :
 
     def add_feature(self, cap=None, name=None):
         pass
-
-from tox import Tox
-
-
-
 
 class BaseXMPP(Tox) :
     def __init__(self,config):

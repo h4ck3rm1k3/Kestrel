@@ -10,12 +10,28 @@ from kestrel.plugins.kestrel_manager.commands import (
 
 )
 
-session = {
-    'from' : "bla"
-}
+class Blah:
+    def __init__(self, astr):
+        self._str=astr
+    def bare (self):
+        return self._str
+
+class Session :
+    @property
+    def from_user(self):
+        return Blah("ba")
+
+
+from kestrel.plugins.xep_0004 import Form
+
+session = Session()
+
 expected = None
 payload = None
-form = "blah"
+
+
+form = Form()
+
 config = {
     "backend" : "blag"
 }

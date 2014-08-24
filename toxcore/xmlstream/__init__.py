@@ -4,13 +4,18 @@ class Item :
     def __getitem__(self, item):
         return Item()
 
+class XML :
+    pass
 
 class ElementBase:
 
-    def __init__(self, xml=None, str=None):
-        pass
+    def __init__(self, xml=None, str=None, parent=None):
+        self._xml = XML()
 
     def findall(self, pattern):
+        return []
+
+    def find(self, pattern):
         pass
 
     def _get_sub_text(self, name):
@@ -21,7 +26,7 @@ class ElementBase:
 
     @property
     def xml(self):
-        pass
+        return self
 
     def __getitem__(self, item):
         return Item()

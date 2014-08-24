@@ -3,13 +3,14 @@ import toxcore
 class Xep0050(toxcore.ComponentXMPP):
     pass
 
-class Form :
-    def addField(self, var=None, label=None, required=None):
-        pass
+from  kestrel.plugins.xep_0004 import xep_0004
 
-class Xep0004(toxcore.ComponentXMPP):
-    def makeForm(self, ftype=None):
-        return Form()
+class Xep0004(toxcore.ComponentXMPP, xep_0004):
+    
+    pass
+#     def makeForm(self, ftype=None):
+#         return Form()
+
       
 class XMPP(toxcore.ComponentXMPP):
     def __init__(self, config):
@@ -19,6 +20,9 @@ class XMPP(toxcore.ComponentXMPP):
 
     def __getitem__(self, x):
         return self._components[x]
+
+    def user_jobs(self, user):
+        return []
 
 from toxcore import JID
         
@@ -36,12 +40,23 @@ class base_plugin :
 
     def __init__(self, config, xmpp=None):
         self._xmpp= XMPP(config)
-    
+
     
     @property
     def pool_jid(self):
         return "somejid"
 
+    @property
+    def backend(self):
+        return self._xmpp
+
+    # @property
+    # def kestrel(self):
+    #     return self._kestrel
+
+    # @kestrel.setter
+    # def kestrel(self,value):
+    #     self._kestrel = value
 
     @property
     def submit_jid(self):

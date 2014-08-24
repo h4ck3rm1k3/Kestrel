@@ -40,7 +40,7 @@ class AdhocCommand(base_plugin):
 
     def session_start(self, payload, session):
         print ("session start")
-        session['hash_prefix'] = self.node
+        session.hash_prefix = self.node
         return self.start(payload, session)
 
     def start(self, payload, session):
@@ -55,10 +55,10 @@ class cmd_poolstatus(AdhocCommand):
 
     def command_init(self):
         print ("pool status command init")
-        self.kestrel = self.config['backend']
+        #self.kestrel = self.backend
 
     def start(self, form, session):
-        status = self.kestrel.pool_status()
+        status = self.backend.pool_status()
         form = self.xmpp['xep_0004'].makeForm(ftype='result')
         form['title'] = 'Pool Status'
         form.addField(var='online_workers',
@@ -87,11 +87,12 @@ class cmd_joinpool(AdhocCommand):
     name = 'Join Pool'
 
     def command_init(self):
-        self.kestrel = self.config['backend']
+        #self.backend = self.backend
+        pass
 
     def start(self, form, session):
         form = self.xmpp['xep_0004'].makeForm(ftype='form')
-        form['title'] = 'Join Pool'
+        form.title = 'Join Pool'
         form.addField(var='capabilities',
                       label='Capabilities',
                       ftype='text-multi')
@@ -105,7 +106,7 @@ class cmd_joinpool(AdhocCommand):
 
     def complete(self, form, session):
         worker = session['from']
-        caps = set(form['values']['capabilities'].split('\n'))
+        caps = set(form.values.capabilities)
         self.xmpp.event('kestrel_register_worker', (worker, caps))
 
         if worker.bare in self.xmpp.roster[self.jid.bare]:
@@ -124,7 +125,8 @@ class cmd_submitjob(AdhocCommand):
     name = 'Submit Job'
 
     def command_init(self):
-        self.kestrel = self.config['backend']
+        #self.backend = self.config['backend']
+        pass
 
     def start(self, form, session):
         form = self.xmpp['xep_0004'].makeForm(ftype='form')
@@ -153,7 +155,7 @@ class cmd_submitjob(AdhocCommand):
         return session
 
     def complete(self, form, session):
-        id = self.kestrel.job_id()
+        id = self.backend.job_id()
         reqs = set([r.upper() for r in form['values']['requirements'].split("\n")])
         job = {'id': id,
                'owner': session['from'].bare,
@@ -185,11 +187,15 @@ class cmd_jobstatus(AdhocCommand):
     name = 'Job Statuses'
 
     def command_init(self):
-        self.kestrel = self.config['backend']
+        #self.backend = self.backend
+        pass
 
     def start(self, form, session):
         form = self.xmpp['xep_0004'].makeForm(ftype='result')
-        form['title'] = 'Job Statuses'
+        form.title = 'Job Statuses'
+        print form
+        print form.__dict__
+
         form.addReported(var='job_id', label='Job ID')
         form.addReported(var='owner', label='Owner')
         form.addReported(var='requested', label='Requested')
@@ -198,7 +204,7 @@ class cmd_jobstatus(AdhocCommand):
         form.addReported(var='running', label='Running')
         form.addReported(var='completed', label='Completed')
 
-        statuses = self.kestrel.job_status()
+        statuses = self.backend.job_status()
         for job in statuses:
             statuses[job]['job_id'] = job
             form.addItem(statuses[job])
@@ -216,32 +222,33 @@ class cmd_canceljob(AdhocCommand):
     name = 'Cancel Job'
 
     def command_init(self):
-        self.kestrel = self.config['backend']
+        #self.backend = self.backend
+        pass
 
     def start(self, form, session):
-        user = session['from'].bare
-        user_jobs = self.kestrel.user_jobs(user)
+        user = session.from_user.bare
+        user_jobs = self.backend.user_jobs(user)
 
         form = self.xmpp['xep_0004'].makeForm()
-        form['title'] = 'Cancel Job'
-        form['instructions'] = 'Select one or more jobs to cancel.'
+        form.title = 'Cancel Job'
+        form.instructions = 'Select one or more jobs to cancel.'
         form.addField(ftype='list-multi', var='job_ids', label='Jobs',
                       required=True)
         for job in user_jobs:
-            form['fields']['job_ids'].addOption(label='Job %s' % job,
+            form.fields.job_ids.addOption(label='Job %s' % job,
                                                 value=job)
-        session['payload'] = form
-        session['next'] = self.complete
-        session['has_next'] = False
-        session['allow_complete'] = True
+        session.payload = form
+        session.next_item = self.complete
+        session.has_next = False
+        session.allow_complete = True
 
         return session
 
     def complete(self, form, session):
-        user = session['from'].bare
-        jobs = form['values']['job_ids']
+        user = session.from_user.bare
+        jobs = form.values.job_ids
         for job in jobs:
             self.xmpp.event('kestrel_job_cancel', (user, job))
-        session['payload'] = None
+        session.payload = None
 
         return session

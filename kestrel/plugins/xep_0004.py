@@ -6,6 +6,10 @@
     See the file LICENSE for copying permission.
 """
 
+#import toxcore.plugins
+#pprint.pprint( toxcore.plugins.__dict__)
+from toxcore.plugins import BasePlugin
+
 import logging
 #logging.basicConfig()
 import copy
@@ -15,12 +19,18 @@ from toxcore import Message
 from toxcore.xmlstream.handler import Callback
 from toxcore.xmlstream.matcher import MatchXPath
 from toxcore.xmlstream import register_stanza_plugin, ElementBase, ET
-from toxcore.plugins.base import base_plugin
 from toxcore.thirdparty import OrderedDict
+
+#import toxcore.plugins
+#print toxcore.plugins
+#import sys
 
 
 log = logging.getLogger(__name__)
 #log.setLevel(logging.DEBUG)
+
+# class Form:
+
 
 class Form(ElementBase):
 
@@ -35,6 +45,9 @@ class Form(ElementBase):
     sub_interfaces = set(('title',))
     form_types = set(('cancel', 'form', 'result', 'submit'))
 
+    def addReported(self,*args, **kwargs):
+        self.add_reported(args, kwargs)
+
     def __init__(self, *args, **kwargs):
         """
         """
@@ -42,7 +55,6 @@ class Form(ElementBase):
         self.field = OrderedDict()
 
         self.addField = self.add_field
-        self.addReported = self.add_reported
         self.addItem = self.add_item
         self.setItems = self.set_items
         self.delItems = self.del_items
@@ -65,20 +77,23 @@ class Form(ElementBase):
         if ElementBase.setup(self, xml): #if we had to generate xml
             self['type'] = 'form'
 
+    def addField(self, var=None, label=None, required=None, ftype=None):
+        self.add_field(var, label, required, ftype)
+
     def add_field(self, var='', ftype=None, label='', desc='',
                         required=False, value=None, options=None, **kwargs):
         ftype = kwargs.get('type', ftype)
 
         field = FormField(parent=self)
-        field['var'] = var
-        field['type'] = ftype
-        field['label'] = label
-        field['desc'] = desc
-        field['required'] = required
-        field['value'] = value
-        field['options'] = options
+        field.var = var
+        field.field_type = ftype
+        field.label = label
+        field.desc = desc
+        field.required = required
+        field.value = value
+        field.options = options
 
-        self.field[var] = field
+        #self.field.set_variable(var,field)
 
         return field
 
@@ -104,6 +119,7 @@ class Form(ElementBase):
     def add_reported(self, var='', ftype=None, label='', desc='', **kwargs):
         ftype = kwargs.get('type', ftype)
 
+        assert(self.xml)
         reported = self.xml.find('{%s}reported' % self.namespace)
         if reported is None:
             reported = ET.Element('{%s}reported' % self.namespace)
@@ -145,6 +161,7 @@ class Form(ElementBase):
 
     def get_fields(self, use_dict=False):
         fields = OrderedDict()
+        assert self.xml
         fields_xml = self.xml.findall('{%s}field' % self.namespace)
         for field_xml in fields_xml:
             field = FormField(xml=field_xml)
@@ -182,7 +199,10 @@ class Form(ElementBase):
         values = OrderedDict()
         fields = self.get_fields()
         for var in fields:
-            values[var] = fields[var]['value']
+            v = fields[var]
+            if (v):
+                values[var] = v['value']
+
         return values
 
     def reply(self):
@@ -233,21 +253,36 @@ class Form(ElementBase):
         return new
 
 
+    # def addReported(self, var, label):
+    @property 
+    def values(self):
+        return self.get_values()
+
+
+
 class FormField(ElementBase):
-    namespace = 'jabber:x:data'
-    name = 'field'
-    plugin_attrib = 'field'
-    interfaces = set(('answer', 'desc', 'required', 'value',
+    _namespace = 'jabber:x:data'
+    _name = 'field'
+    _plugin_attrib = 'field'
+    _interfaces = set(('answer', 'desc', 'required', 'value',
                       'options', 'label', 'type', 'var'))
-    sub_interfaces = set(('desc',))
-    field_types = set(('boolean', 'fixed', 'hidden', 'jid-multi',
+    _sub_interfaces = set(('desc',))
+    _field_types = set(('boolean', 'fixed', 'hidden', 'jid-multi',
                        'jid-single', 'list-multi', 'list-single',
                        'text-multi', 'text-private', 'text-single'))
-    multi_value_types = set(('hidden', 'jid-multi',
+    _multi_value_types = set(('hidden', 'jid-multi',
                              'list-multi', 'text-multi'))
-    multi_line_types = set(('hidden', 'text-multi'))
-    option_types = set(('list-multi', 'list-single'))
-    true_values = set((True, '1', 'true'))
+    _multi_line_types = set(('hidden', 'text-multi'))
+    _option_types = set(('list-multi', 'list-single'))
+    _true_values = set((True, '1', 'true'))
+
+    @property 
+    def variable(self, name, val):
+        pass 
+
+    def __init__(self, parent):
+        ElementBase.__init__(self,parent)
+
 
     def addOption(self, label='', value=''):
         if self['type'] in self.option_types:
@@ -370,7 +405,13 @@ class FieldOption(ElementBase):
     sub_interfaces = set(('value',))
 
 
-class xep_0004(base_plugin):
+# class Xep004(toxcore.ComponentXMPP, xep_0004):
+  
+#     pass
+# #     def makeForm(self, ftype=None):
+# #         return Form()
+
+class xep_0004(BasePlugin):
     """
     XEP-0004: Data Forms
     """
@@ -391,9 +432,9 @@ class xep_0004(base_plugin):
 
     def makeForm(self, ftype='form', title='', instructions=''):
         f = Form()
-        f['type'] = ftype
-        f['title'] = title
-        f['instructions'] = instructions
+        f.form_type = ftype
+        f.title = title
+        f.instructions = instructions
         return f
 
     def post_init(self):
@@ -405,3 +446,4 @@ class xep_0004(base_plugin):
 
     def buildForm(self, xml):
         return Form(xml=xml)
+
